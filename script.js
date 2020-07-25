@@ -10,28 +10,35 @@ const resetBtn = document.getElementById('reset')
 let p1Score = 0;
 let p2Score = 0;
 const winningScore = 10;
+let gameOver = false;
 
 player1Btn.addEventListener('click', () => {
-    // Data change
-    p1Score++;
-    // Game over
-    if (p1Score === winningScore) {
-        player1Btn.setAttribute('disabled', 'disabled');
-        player2Btn.setAttribute('disabled', 'disabled');
+    if (!gameOver) {
+        // Data change
+        p1Score++;
+        // Game over
+        if (p1Score === winningScore) {
+            gameOver = true;
+            // player1Btn.setAttribute('disabled', 'disabled');
+            // player2Btn.setAttribute('disabled', 'disabled');
+        }
     }
     // Showing changed data
     displayPlayer1Score.innerText = p1Score;
 })
 
 player2Btn.addEventListener('click', () => {
-    // Data change
-    p2Score++;
-    // Game over
-    if (p2Score === winningScore) {
-        player1Btn.setAttribute('disabled', 'disabled');
-        player2Btn.setAttribute('disabled', 'disabled');
+    if (!gameOver) {
+        // Data change
+        p2Score++;
+        // Game over
+        if (p2Score === winningScore) {
+            gameOver = true;
+            // player1Btn.setAttribute('disabled', 'disabled');
+            // player2Btn.setAttribute('disabled', 'disabled');
+        }
     }
-    // 
     // Showing changed data
     displayPlayer2Score.innerText = p2Score;
+
 })
