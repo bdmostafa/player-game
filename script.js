@@ -7,14 +7,31 @@ const player1Btn = document.getElementById('player1Btn');
 const player2Btn = document.getElementById('player2Btn');
 const resetBtn = document.getElementById('reset')
 
-const p1Score = 0;
-const p2Score = 0;
-const winningScore = 5;
+let p1Score = 0;
+let p2Score = 0;
+const winningScore = 10;
 
 player1Btn.addEventListener('click', () => {
-    console.log('1')
+    // Data change
+    p1Score++;
+    // Game over
+    if (p1Score === winningScore) {
+        player1Btn.setAttribute('disabled', 'disabled');
+        player2Btn.setAttribute('disabled', 'disabled');
+    }
+    // Showing changed data
+    displayPlayer1Score.innerText = p1Score;
 })
 
 player2Btn.addEventListener('click', () => {
-    console.log('2')
+    // Data change
+    p2Score++;
+    // Game over
+    if (p2Score === winningScore) {
+        player1Btn.setAttribute('disabled', 'disabled');
+        player2Btn.setAttribute('disabled', 'disabled');
+    }
+    // 
+    // Showing changed data
+    displayPlayer2Score.innerText = p2Score;
 })
