@@ -16,12 +16,8 @@ player1Btn.addEventListener('click', () => {
     if (!gameOver) {
         // Data change
         p1Score++;
-        // Game over
-        if (p1Score === winningScore) {
-            gameOver = true;
-            // player1Btn.setAttribute('disabled', 'disabled');
-            // player2Btn.setAttribute('disabled', 'disabled');
-        }
+        processWinner(p1Score, winningScore);
+
     }
     // Showing changed data
     displayPlayer1Score.innerText = p1Score;
@@ -31,14 +27,30 @@ player2Btn.addEventListener('click', () => {
     if (!gameOver) {
         // Data change
         p2Score++;
-        // Game over
-        if (p2Score === winningScore) {
-            gameOver = true;
-            // player1Btn.setAttribute('disabled', 'disabled');
-            // player2Btn.setAttribute('disabled', 'disabled');
-        }
+        processWinner(p2Score, winningScore);
     }
     // Showing changed data
     displayPlayer2Score.innerText = p2Score;
 
+})
+
+function processWinner(preScore, winningScore) {
+    // Game over
+    if (preScore === winningScore) {
+        gameOver = true;
+        // gameOver != gameOver; // Replace another value
+
+        player1Btn.setAttribute('disabled', 'disabled');
+        player2Btn.setAttribute('disabled', 'disabled');
+    }
+}
+
+resetBtn.addEventListener('click', () => {
+    p1Score = 0;
+    p2Score = 0;
+    gameOver = false;
+    displayPlayer1Score.innerText = 0;
+    displayPlayer2Score.innerText = 0;
+    player1Btn.removeAttribute('disabled');
+    player2Btn.removeAttribute('disabled');
 })
