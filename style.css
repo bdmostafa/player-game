@@ -1,0 +1,38 @@
+body {
+    margin: 0 auto;
+    background-color: bisque;
+    padding: 25px;
+}
+
+.container {
+    margin-top: 50px;
+    background-color: lightgrey;
+    border-radius: 15px;
+    padding: 50px;
+    text-align: center;
+}
+
+h2 {
+    /* visibility: hidden; */
+    text-align: center;
+}
+
+.winnerColor {
+    color: darkcyan;
+}
+
+#winningScore {
+    font-weight: bold;
+}
+
+button {
+    margin: 10px 0px;
+}
+
+#player1Btn {
+    background-color: ;
+}
+
+#player2Btn {
+    background-color: ;
+}
