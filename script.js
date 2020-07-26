@@ -12,44 +12,20 @@ let p2Score = 0;
 let winningScore = 10;
 let gameOver = false;
 
-player1Btn.addEventListener('click', () => {
-    if (!gameOver) {
-        // Data change
-        p1Score++;
-        processWinner(p1Score, winningScore);
-
-    }
-    // Showing changed data
-    displayPlayer1Score.textContent = p1Score;
-})
-
-player2Btn.addEventListener('click', () => {
-    if (!gameOver) {
-        // Data change
-        p2Score++;
-        processWinner(p2Score, winningScore);
-    }
-    // Showing changed data
-    displayPlayer2Score.textContent = p2Score;
-
-})
-
-inputScore.addEventListener('change', displayWinScore)
-
-resetBtn.addEventListener('click', reset)
-
 function processWinner(preScore, winningScore) {
     // Game over
     if (preScore === winningScore) {
+        if (p1Score === winningScore) displayPlayer1Score.classList.add('winnerColor');
+        else displayPlayer2Score.classList.add('winnerColor');
+
         gameOver = true;
         // gameOver != gameOver; // Replace another value
-
         player1Btn.setAttribute('disabled', 'disabled');
         player2Btn.setAttribute('disabled', 'disabled');
     }
 }
 
-function displayWinScore() {
+function displayWinningScore() {
     winningScore = Math.floor(inputScore.value);
     displayWinScore.textContent = winningScore;
     inputScore.value = '';
@@ -64,4 +40,29 @@ function reset() {
     displayPlayer2Score.textContent = 0;
     player1Btn.removeAttribute('disabled');
     player2Btn.removeAttribute('disabled');
+    displayPlayer1Score.classList.remove('winnerColor');
+    displayPlayer2Score.classList.remove('winnerColor');
 }
+
+player1Btn.addEventListener('click', () => {
+    if (!gameOver) {
+        // Data change
+        p1Score++;
+        processWinner(p1Score, winningScore);
+    }
+    // Showing changed data
+    displayPlayer1Score.textContent = p1Score;
+})
+
+player2Btn.addEventListener('click', () => {
+    if (!gameOver) {
+        p2Score++;
+        processWinner(p2Score, winningScore);
+    }
+    displayPlayer2Score.textContent = p2Score;
+
+})
+
+inputScore.addEventListener('change', displayWinningScore)
+
+resetBtn.addEventListener('click', reset)

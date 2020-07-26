@@ -7,20 +7,29 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Player Game | JS</title>
+    <style>
+        .winnerColor {
+            color: darkcyan;
+        }
+
+        #winningScore {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
     <main class="container">
         <h1>Let's see who is the winner!</h1>
         <h2>
-            Player1:
+            Player1 Score:
             <span id="player1Score">0</span>
         </h2>
         <h2>
-            Player2:
+            Player2 Score:
             <span id="player2Score">0</span>
         </h2>
-        <p>Playing up to <span><strong>10</strong> </span> </p>
+        <p>Playing up to <span id="winningScore">10</span> </p>
         <input type="number" name="" id="input">
         <button id="player1Btn" class="btn btn-primary">Player 1</button>
         <button id="player2Btn" class="btn btn-primary">Player 2</button>
