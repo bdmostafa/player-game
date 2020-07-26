@@ -15,6 +15,8 @@
     let targetScore = 10;
     let start;
     let end;
+    let player1Clicked = false;
+    let player2Clicked = false;
     let playerScore;
     let gameOver = false;
 
@@ -28,21 +30,25 @@
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
-        const playerScore = Math.floor(Math.random() * (max - min + 1)) + min;
+        playerScore = Math.floor(Math.random() * (max - min + 1)) + min;
         return playerScore;
     }
 
     function processWinner() {
         if (!gameOver) {
+            // Generate random number between two integer including start and end numbers
             playerScore = getRandomInt(start, end);
-            // console.log(p1Score)
-            // console.log(p2Score)
+
+            // Check player button click and assign the value
+            if (player1Clicked) p1Score = playerScore;
+            if (player2Clicked) p2Score = playerScore;
+
             if (playerScore === targetScore) {
                 if (p1Score === targetScore) displayPlayer1Score.classList.add('winnerColor');
                 else displayPlayer2Score.classList.add('winnerColor');
 
-                gameOver = true;
-                // gameOver != gameOver; // Replace another value
+                gameOver != gameOver; // gameOver = true
+
                 player1Btn.setAttribute('disabled', 'disabled');
                 player2Btn.setAttribute('disabled', 'disabled');
             }
@@ -70,16 +76,17 @@
     inputMax.addEventListener('change', () => end = Math.floor(inputMax.value))
 
     player1Btn.addEventListener('click', () => {
+        player1Clicked = true;
         processWinner();
-        p1Score = playerScore;
         displayPlayer1Score.textContent = playerScore;
+        player1Clicked = false;
     })
 
     player2Btn.addEventListener('click', () => {
+        player2Clicked = true;
         processWinner();
-        p1Score = playerScore;
         displayPlayer2Score.textContent = playerScore;
-
+        player2Clicked = false;
     })
 
     resetBtn.addEventListener('click', reset)
