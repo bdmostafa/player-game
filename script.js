@@ -9,7 +9,7 @@ const resetBtn = document.getElementById('reset')
 
 let p1Score = 0;
 let p2Score = 0;
-const winningScore = 10;
+let winningScore = 10;
 let gameOver = false;
 
 player1Btn.addEventListener('click', () => {
@@ -20,7 +20,7 @@ player1Btn.addEventListener('click', () => {
 
     }
     // Showing changed data
-    displayPlayer1Score.innerText = p1Score;
+    displayPlayer1Score.textContent = p1Score;
 })
 
 player2Btn.addEventListener('click', () => {
@@ -30,9 +30,13 @@ player2Btn.addEventListener('click', () => {
         processWinner(p2Score, winningScore);
     }
     // Showing changed data
-    displayPlayer2Score.innerText = p2Score;
+    displayPlayer2Score.textContent = p2Score;
 
 })
+
+inputScore.addEventListener('change', displayWinScore)
+
+resetBtn.addEventListener('click', reset)
 
 function processWinner(preScore, winningScore) {
     // Game over
@@ -45,12 +49,19 @@ function processWinner(preScore, winningScore) {
     }
 }
 
-resetBtn.addEventListener('click', () => {
+function displayWinScore() {
+    winningScore = Math.floor(inputScore.value);
+    displayWinScore.textContent = winningScore;
+    inputScore.value = '';
+    reset();
+}
+
+function reset() {
     p1Score = 0;
     p2Score = 0;
     gameOver = false;
-    displayPlayer1Score.innerText = 0;
-    displayPlayer2Score.innerText = 0;
+    displayPlayer1Score.textContent = 0;
+    displayPlayer2Score.textContent = 0;
     player1Btn.removeAttribute('disabled');
     player2Btn.removeAttribute('disabled');
-})
+}
