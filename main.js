@@ -1,4 +1,3 @@
-// Code refactoring with IIFE
 (function () {
     const displayPlayer1Score = document.getElementById('player1Score');
     const displayPlayer2Score = document.getElementById('player2Score');
@@ -19,7 +18,7 @@
     let playerScore;
     let gameOver = false;
 
-    function displayWinningScore() {
+    function displayTargetScore() {
         targetScore = Math.floor(inputTarget.value);
         displayWinScore.textContent = targetScore;
         inputTarget.value = '';
@@ -33,19 +32,22 @@
         return playerScore;
     }
 
-    function processWinner(playerScore, targetScore) {
-        if (playerScore === targetScore) {
-            if (p1Score === targetScore) displayPlayer1Score.classList.add('winnerColor');
-            else displayPlayer2Score.classList.add('winnerColor');
+    function processWinner() {
+        if (!gameOver) {
+            playerScore = getRandomInt(start, end);
+            // console.log(p1Score)
+            // console.log(p2Score)
+            if (playerScore === targetScore) {
+                if (p1Score === targetScore) displayPlayer1Score.classList.add('winnerColor');
+                else displayPlayer2Score.classList.add('winnerColor');
 
-            gameOver = true;
-            // gameOver != gameOver; // Replace another value
-            player1Btn.setAttribute('disabled', 'disabled');
-            player2Btn.setAttribute('disabled', 'disabled');
+                gameOver = true;
+                // gameOver != gameOver; // Replace another value
+                player1Btn.setAttribute('disabled', 'disabled');
+                player2Btn.setAttribute('disabled', 'disabled');
+            }
         }
     }
-
-
 
     function reset() {
         p1Score = 0;
@@ -53,32 +55,28 @@
         gameOver = false;
         displayPlayer1Score.textContent = 0;
         displayPlayer2Score.textContent = 0;
+        inputMin.value = 0;
+        inputMax.value = 0;
         player1Btn.removeAttribute('disabled');
         player2Btn.removeAttribute('disabled');
         displayPlayer1Score.classList.remove('winnerColor');
         displayPlayer2Score.classList.remove('winnerColor');
     }
 
-    inputTarget.addEventListener('change', displayWinningScore)
+    inputTarget.addEventListener('change', displayTargetScore)
 
     inputMin.addEventListener('change', () => start = Math.floor(inputMin.value))
 
     inputMax.addEventListener('change', () => end = Math.floor(inputMax.value))
 
     player1Btn.addEventListener('click', () => {
-        if (!gameOver) {
-            playerScore = getRandomInt(start, end);
-            processWinner(playerScore, targetScore);
-        }
+        processWinner();
         p1Score = playerScore;
         displayPlayer1Score.textContent = playerScore;
     })
 
     player2Btn.addEventListener('click', () => {
-        if (!gameOver) {
-            playerScore = getRandomInt(start, end);
-            processWinner(playerScore, targetScore);
-        }
+        processWinner();
         p1Score = playerScore;
         displayPlayer2Score.textContent = playerScore;
 
